@@ -1,27 +1,17 @@
-import React, {
-    useContext,
-    useState,
-    useEffect
- } from "react";
+import React, { useContext, useEffect } from "react";
 import background from './background.jpg';
 
 import { MovieContext } from "./MovieContext";
 
-const SearchBar = () => {
+const SearchBar = ({query, setQuery, setIsEmpty}) => {
     const [movies, fetchMovies] = useContext(MovieContext);
-    const [query, setQuery] = useState('');
+
 
     useEffect(() => {
         if (movies.data.results.length > 0)
             localStorage.setItem("initialData", JSON.stringify(movies));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    useEffect(() => {
-        const initialData = JSON.parse(localStorage.getItem("initialData"));
-        if (query === "")
-            console.log('movieList', initialData)
-    }, [query]);
 
     return (
         <div className="searchbar">
@@ -32,6 +22,7 @@ const SearchBar = () => {
                 <form
                     onSubmit={event => {
                         event.preventDefault();
+                        setIsEmpty(false);
                         fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=b2f807b6ab82e6b2a44dec94fabebeb9&query=${query}`);
                     }}
                 >
