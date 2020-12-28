@@ -19,19 +19,19 @@ const MovieList = ({query, empty, setIsEmpty}) => {
                 <ul className="movie__list">
                     {empty
                         ? (
-                            initialValues.data.results.map((movie, i) => (
+                            initialValues.data.results.map(movie => (
                                 <Movie
                                     url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
                                     title={movie.original_title}
-                                    idx={i}
+                                    data={movie}
                                 />
                             ))
                         ) : (
-                            movies.data.results.map((movie, i) => (
+                            movies.data.results.map(movie => (
                                 <Movie
                                     url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
                                     title={movie.original_title}
-                                    idx={i}
+                                    data={movie}
                                 />
                             ))
                         )

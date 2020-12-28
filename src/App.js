@@ -1,6 +1,7 @@
 import './App.css';
 import MovieList from "./MovieList";
 import SearchBar from "./SearchBar";
+import RatingFilter from "./RatingFilter";
 import { MovieProvider } from "./MovieContext";
 import React, { useState } from "react";
 
@@ -10,6 +11,7 @@ function App() {
 	return (
 		<MovieProvider>
 			<SearchBar query={query} setQuery={setQuery} setIsEmpty={setIsEmpty} />
+			<RatingFilter setIsEmpty={setIsEmpty} />
 			<MovieList query={query} empty={empty} setIsEmpty={setIsEmpty} />
 		</MovieProvider>
 	);
