@@ -11,7 +11,7 @@ function App() {
 	return (
 		<MovieProvider>
 			<SearchBar query={query} setQuery={setQuery} setIsEmpty={setIsEmpty} />
-			<RatingFilter setIsEmpty={setIsEmpty} />
+			<RatingFilter empty={empty} setIsEmpty={setIsEmpty} />
 			<MovieList query={query} empty={empty} setIsEmpty={setIsEmpty} />
 		</MovieProvider>
 	);

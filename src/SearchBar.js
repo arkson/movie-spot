@@ -18,7 +18,7 @@ const SearchBar = ({query, setQuery, setIsEmpty}) => {
             <img src={background} alt="Search bar background" />
             <div className="content">
                 <h1>Your favourite movies. Explained.</h1><br />
-                <p>Figure out what happened. Then find out why.</p>
+                <h3>Figure out what happened. Then find out why.</h3>
                 <form
                     onSubmit={event => {
                         event.preventDefault();

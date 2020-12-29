@@ -13,36 +13,21 @@ const MovieList = ({query, empty, setIsEmpty}) => {
         }
     }, [query,setIsEmpty]);
 
+    const list = empty ? initialValues : movies;
+
     return (
         <>
         	<main className="movie">
-                <h1>Popular Movies</h1>
                 <ul className="movie__list">
-                    {empty
-                        ? (
-                            initialValues.data.results.map(movie => (
-                                <ModalProvider>
-                                    <Movie
-                                        url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
-                                        title={movie.original_title}
-                                        data={movie}
-                                    />
-                                </ModalProvider>
-
-                            ))
-                        ) : (
-                            movies.data.results.map(movie => (
-                                <ModalProvider>
-                                    <Movie
-                                        url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
-                                        title={movie.original_title}
-                                        data={movie}
-                                    />
-                                </ModalProvider>
-                            ))
-                        )
-
-                    }
+                    {list.data.results.map(movie => (
+                        <ModalProvider>
+                            <Movie
+                                url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
+                                title={movie.original_title}
+                                data={movie}
+                            />
+                        </ModalProvider>
+                    ))}
                 </ul>
             </main>
         </>

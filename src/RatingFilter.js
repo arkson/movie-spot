@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { MovieContext } from "./MovieContext";
 
-const RatingFilter = ({setIsEmpty}) => {
+const RatingFilter = ({empty, setIsEmpty}) => {
     const [active, setActive] = useState(false);
     const [className, setclassName] = useState(null);
     // eslint-disable-next-line no-unused-vars
@@ -42,6 +42,7 @@ const RatingFilter = ({setIsEmpty}) => {
                     onClick={() => handleClick(1, 'one_star')}>☆</span>
             </div>
             <h3>Filter by Rating</h3>
+            <h2>{empty ? 'Popular Movies' : 'Results'}</h2>
         </div>
     );
 };
