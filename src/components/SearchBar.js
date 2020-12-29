@@ -1,20 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import background from '../assets/background.jpg';
 
 import { MovieContext } from "../context/MovieContext";
+import conf from "./../config/config";
 
-const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
-const SEARCH_ENDPOINT = process.env.REACT_APP_SEARCH_ENDPOINT;
-
-const SearchBar = ({query, setQuery, setIsEmpty}) => {
+const SearchBar = () => {
+    // eslint-disable-next-line no-unused-vars
     const [movies, fetchMovies] = useContext(MovieContext);
+	const [query, setQuery] = useState('');
 
 
     useEffect(() => {
-        if (movies.data.results.length > 0)
-            localStorage.setItem("initialData", JSON.stringify(movies));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        const data = sessionStorage.getItem("initialData");
+        if (query === "" && data) {
+            fetchMovies('');
+        }
+    }, [fetchMovies, query]);
 
     return (
         <div className="searchbar">
@@ -25,8 +26,7 @@ const SearchBar = ({query, setQuery, setIsEmpty}) => {
                 <form
                     onSubmit={event => {
                         event.preventDefault();
-                        setIsEmpty(false);
-                        fetchMovies(`${SEARCH_ENDPOINT}?api_key=${API_KEY}&query=${query}`);
+                        fetchMovies(`${conf.SEARCH_ENDPOINT}?api_key=${conf.API_KEY}&query=${query}`);
                     }}
                 >
                     <input

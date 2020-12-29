@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { ModalContext } from "../context/ModalContext";
 
-const Movie = ({ url, title, data }) => {
+const Movie = ({ id, url, title, data }) => {
     let { handleModal } = useContext(ModalContext);
 
     return (
         <>
-            <li onClick={() => handleModal(<ContentComponent data={data} />)}>
+            <li id={id} onClick={() => handleModal(<ContentComponent data={data} />)}>
                 <figure>
                     <img
                         src={url}
@@ -24,7 +24,7 @@ const ContentComponent = ({data}) => {
     let { handleModal } = useContext(ModalContext);
     return (
         <>
-        <div className="modal-window">
+        <div id={data.id} className="modal-window">
             <div className='row'>
                 <div className='column'>
                     <img src={'https://image.tmdb.org/t/p/w500'+data.backdrop_path} alt={data.title} />

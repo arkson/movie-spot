@@ -1,14 +1,13 @@
 import React, { createContext } from "react";
 import useDataApi from "../hooks/useDataApi";
 
-const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
-const DISCOVER_ENDPOINT = process.env.REACT_APP_DISCOVER_ENDPOINT;
+import conf from "./../config/config";
 
 export const MovieContext = createContext();
 
 export const MovieProvider = props => {
-    const [{ data, isLoading, isError }, fetchMovies ] = useDataApi(
-        `${DISCOVER_ENDPOINT}?api_key=${API_KEY}&sort_by=popularity.desc&page=1`,
+    const [{ data, isLoading, isError, isEmpty }, fetchMovies ] = useDataApi(
+        `${conf.DISCOVER_ENDPOINT}?api_key=${conf.API_KEY}&sort_by=popularity.desc&page=1`,
         {
             page: 1,
             results: [],
@@ -18,7 +17,9 @@ export const MovieProvider = props => {
     );
 
     return (
-        <MovieContext.Provider value={[{data, isLoading, isError}, fetchMovies]}>
+        <MovieContext.Provider
+            value={[{data, isLoading, isError, isEmpty}, fetchMovies]}
+        >
             {props.children}
         </MovieContext.Provider>
     );

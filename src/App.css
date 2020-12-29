@@ -151,6 +151,7 @@ main.movie {
    content: "\2605";
    position: absolute;
    color: orangered;
+   cursor: pointer;
 }
 
 .five_star {

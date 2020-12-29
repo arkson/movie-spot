@@ -1,27 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Movie from "./Movie";
 import { MovieContext } from "../context/MovieContext";
 import { ModalProvider } from "../context/ModalContext";
 
-const MovieList = ({query, empty, setIsEmpty}) => {
+const MovieList = () => {
     const [movies] = useContext(MovieContext);
-    const initialValues = JSON.parse(localStorage.getItem("initialData"));
-
-    useEffect(() => {
-        if (query === "") {
-            setIsEmpty(true);
-        }
-    }, [query,setIsEmpty]);
-
-    const list = empty ? initialValues : movies;
 
     return (
         <>
         	<main className="movie">
                 <ul className="movie__list">
-                    {list.data.results.map(movie => (
+                    {movies.data.results.map(movie => (
                         <ModalProvider>
                             <Movie
+                                id={movie.id}
                                 url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
                                 title={movie.original_title}
                                 data={movie}

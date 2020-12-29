@@ -1,13 +1,11 @@
 import React, { useState, useContext } from "react";
 import { MovieContext } from "../context/MovieContext";
 
-const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
-const DISCOVER_ENDPOINT = process.env.REACT_APP_DISCOVER_ENDPOINT;
+import conf from "./../config/config";
 
-const RatingFilter = ({empty, setIsEmpty}) => {
+const RatingFilter = () => {
     const [active, setActive] = useState(false);
     const [className, setclassName] = useState(null);
-    // eslint-disable-next-line no-unused-vars
     const [movies, fetchMovies] = useContext(MovieContext);
 
     const ratingRange = {
@@ -18,15 +16,13 @@ const RatingFilter = ({empty, setIsEmpty}) => {
         5: '&vote_average.gte=8&vote_average.lte=10',
     };
 
-    const handleClick = (star, name) => {
+    const toggleRating = (star, name) => {
         setActive(!active);
         setclassName((active ? name : null));
-        if(active) {
-            setIsEmpty(false);
-            fetchMovies(`${DISCOVER_ENDPOINT}?api_key=${API_KEY}&sort_by=popularity.desc${ratingRange[star]}`);
-        } else {
-            setIsEmpty(true);
-        }
+        const url = active ?
+            `${conf.DISCOVER_ENDPOINT}?api_key=${conf.API_KEY}&sort_by=popularity.desc${ratingRange[star]}` : '';
+
+        fetchMovies(url);
 
     };
 
@@ -34,18 +30,18 @@ const RatingFilter = ({empty, setIsEmpty}) => {
         <div className="rating">
             <div>
                 <span className={className}
-                    onClick={() => handleClick(5, 'five_star')}>☆</span>
+                    onClick={() => toggleRating(5, 'five_star')}>☆</span>
                 <span className={className}
-                    onClick={() => handleClick(4, 'four_star')}>☆</span>
+                    onClick={() => toggleRating(4, 'four_star')}>☆</span>
                 <span className={className}
-                    onClick={() => handleClick(3, 'three_star')}>☆</span>
+                    onClick={() => toggleRating(3, 'three_star')}>☆</span>
                 <span className={className}
-                    onClick={() => handleClick(2, 'two_star')}>☆</span>
+                    onClick={() => toggleRating(2, 'two_star')}>☆</span>
                 <span className={className}
-                    onClick={() => handleClick(1, 'one_star')}>☆</span>
+                    onClick={() => toggleRating(1, 'one_star')}>☆</span>
             </div>
             <h3>Filter by Rating</h3>
-            <h2>{empty ? 'Popular Movies' : 'Results'}</h2>
+            <h2>{movies.isEmpty ? 'Popular Movies' : 'Results'}</h2>
         </div>
     );
 };
