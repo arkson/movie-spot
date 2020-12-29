@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Movie from "./Movie";
-import { MovieContext } from "./MovieContext";
-import { ModalProvider } from "./ModalContext";
+import { MovieContext } from "../context/MovieContext";
+import { ModalProvider } from "../context/ModalContext";
 
 const MovieList = ({query, empty, setIsEmpty}) => {
     const [movies] = useContext(MovieContext);

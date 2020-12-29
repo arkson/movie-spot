@@ -1,8 +1,8 @@
 import './App.css';
-import MovieList from "./MovieList";
-import SearchBar from "./SearchBar";
-import RatingFilter from "./RatingFilter";
-import { MovieProvider } from "./MovieContext";
+import MovieList from "./components/MovieList";
+import SearchBar from "./components/SearchBar";
+import RatingFilter from "./components/RatingFilter";
+import { MovieProvider } from "./context/MovieContext";
 import React, { useState } from "react";
 
 function App() {

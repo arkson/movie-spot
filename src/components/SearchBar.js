@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import background from './background.jpg';
+import background from '../assets/background.jpg';
 
-import { MovieContext } from "./MovieContext";
+import { MovieContext } from "../context/MovieContext";
+
+const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
+const SEARCH_ENDPOINT = process.env.REACT_APP_SEARCH_ENDPOINT;
 
 const SearchBar = ({query, setQuery, setIsEmpty}) => {
     const [movies, fetchMovies] = useContext(MovieContext);
@@ -23,7 +26,7 @@ const SearchBar = ({query, setQuery, setIsEmpty}) => {
                     onSubmit={event => {
                         event.preventDefault();
                         setIsEmpty(false);
-                        fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=b2f807b6ab82e6b2a44dec94fabebeb9&query=${query}`);
+                        fetchMovies(`${SEARCH_ENDPOINT}?api_key=${API_KEY}&query=${query}`);
                     }}
                 >
                     <input

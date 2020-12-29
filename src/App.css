@@ -227,3 +227,7 @@ main.movie {
     border: none;
     margin-top: 1rem;
 }
+
+.disable {
+    pointer-events: none;
+}

@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
-import { MovieContext } from "./MovieContext";
+import { MovieContext } from "../context/MovieContext";
+
+const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
+const DISCOVER_ENDPOINT = process.env.REACT_APP_DISCOVER_ENDPOINT;
 
 const RatingFilter = ({empty, setIsEmpty}) => {
     const [active, setActive] = useState(false);
@@ -20,7 +23,7 @@ const RatingFilter = ({empty, setIsEmpty}) => {
         setclassName((active ? name : null));
         if(active) {
             setIsEmpty(false);
-            fetchMovies(`https://api.themoviedb.org/3/discover/movie?api_key=b2f807b6ab82e6b2a44dec94fabebeb9&sort_by=popularity.desc${ratingRange[star]}`);
+            fetchMovies(`${DISCOVER_ENDPOINT}?api_key=${API_KEY}&sort_by=popularity.desc${ratingRange[star]}`);
         } else {
             setIsEmpty(true);
         }

@@ -1,8 +1,8 @@
-import React from "react";
+import { useState } from "react";
 
 const useModal = () => {
-  let [modal, setModal] = React.useState(false);
-  let [modalContent, setModalContent] = React.useState("I'm the Modal Content");
+  let [modal, setModal] = useState(false);
+  let [modalContent, setModalContent] = useState("I'm the Modal Content");
 
   let handleModal = (content = false) => {
     setModal(!modal);

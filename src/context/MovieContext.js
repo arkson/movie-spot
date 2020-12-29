@@ -1,11 +1,14 @@
 import React, { createContext } from "react";
-import useDataApi from "./hooks/useDataApi";
+import useDataApi from "../hooks/useDataApi";
+
+const API_KEY = process.env.REACT_APP_THEMOVIEDB_API_KEY;
+const DISCOVER_ENDPOINT = process.env.REACT_APP_DISCOVER_ENDPOINT;
 
 export const MovieContext = createContext();
 
 export const MovieProvider = props => {
     const [{ data, isLoading, isError }, fetchMovies ] = useDataApi(
-        'https://api.themoviedb.org/3/discover/movie?api_key=b2f807b6ab82e6b2a44dec94fabebeb9&sort_by=popularity.desc&page=1',
+        `${DISCOVER_ENDPOINT}?api_key=${API_KEY}&sort_by=popularity.desc&page=1`,
         {
             page: 1,
             results: [],

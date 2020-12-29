@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ModalContext } from "./ModalContext";
+import { ModalContext } from "../context/ModalContext";
 
 const Movie = ({ url, title, data }) => {
     let { handleModal } = useContext(ModalContext);
