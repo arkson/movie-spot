@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { ModalContext } from "../context/ModalContext";
 
-const Movie = ({ id, url, title, data }) => {
+const Movie = ({ url, movie }) => {
     let { handleModal } = useContext(ModalContext);
 
     return (
         <>
-            <li id={id} onClick={() => handleModal(<ContentComponent data={data} />)}>
+            <li onClick={() => handleModal(<ContentComponent data={movie} />)}>
                 <figure>
                     <img
                         src={url}
-                        alt={title}
+                        alt={movie.title}
                     />
                 </figure>
             </li>

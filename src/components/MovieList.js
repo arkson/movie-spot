@@ -13,10 +13,9 @@ const MovieList = () => {
                     {movies.data.results.map(movie => (
                         <ModalProvider>
                             <Movie
-                                id={movie.id}
+                                key={movie}
                                 url={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
-                                title={movie.original_title}
-                                data={movie}
+                                movie={movie}
                             />
                         </ModalProvider>
                     ))}
