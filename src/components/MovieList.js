@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import Movie from "./Movie";
 import { MovieContext } from "../context/MovieContext";
 import { ModalProvider } from "../context/ModalContext";
+import ErrorMessage from "./../components/ErrorMessage";
 
 const MovieList = () => {
     const [movies] = useContext(MovieContext);
 
     return (
         <>
-        	<main className="movie">
+        {!movies.isError ? (
+            <main className="movie">
                 <ul className="movie__list">
                     {movies.data.results.map(movie => (
                         <ModalProvider>
@@ -21,6 +23,9 @@ const MovieList = () => {
                     ))}
                 </ul>
             </main>
+        ) : (
+            <ErrorMessage />
+        )}
         </>
     );
 };
