@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# The Movie Spot
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 I used also the library Axios to fetch data from the API just by personal choice since I have been using it in the browser and in Node but could have also used native fetch API of the browser.
@@ -31,4 +31,4 @@ Your app is ready to be deployed!
 
 ## Demo
 
-Open [https://serene-joliot-9d96ac.netlify.app/]
+Open [https://movie-spot.netlify.app]
