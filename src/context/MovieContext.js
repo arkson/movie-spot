@@ -1,7 +1,8 @@
 import React, { createContext } from "react";
-import useDataApi from "../hooks/useDataApi";
 
+import useDataApi from "../hooks/useDataApi";
 import conf from "./../config/config";
+import Indicator from "./../components/Indicator";
 
 export const MovieContext = createContext();
 
@@ -20,6 +21,7 @@ export const MovieProvider = props => {
         <MovieContext.Provider
             value={[{data, isLoading, isError, isEmpty}, fetchMovies]}
         >
+            {isLoading && <Indicator />}
             {props.children}
         </MovieContext.Provider>
     );
